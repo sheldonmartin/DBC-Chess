@@ -8,6 +8,7 @@ module View
   end
 
   def self.display_board(board)
+    puts board
   end
 
   def self.color
@@ -31,9 +32,10 @@ module View
   end
 
   end
-  def self.piece_move(piece, origin, updated)
-    puts "You are moving #{piece} from #{origin} to #{updated}."
+  def self.piece_move(piece, current, updated)
+    puts "You moved #{piece} from #{current} to #{updated}."
   end
+
 
 
   end

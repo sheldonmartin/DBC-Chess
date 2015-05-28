@@ -2,6 +2,8 @@ require_relative 'Board'
 
 class GameController
 
+  #include View
+  attr_reader :board
 
   def initialize
     @board = Board.new
@@ -11,17 +13,17 @@ class GameController
 
   def run
     View.color
-    color = View.input
-    @board = initialize_board #places all pieces on the board.
+    color = View.inputs
+    View.display_board(board)
     View.first_move
-    View.choose_piece
+    View.choose_piece #WP
     piece = View.input
     View.choose
-    old_location = View.input #a7
+    current_location = View.input #a7
     View.where_to(piece)
     new_location = View.input
-    @board.move(old_location,new_location)
-
+    board.move(current_location,new_location)
+    View.piece_move(piece,current_location,new_location)
 
   end
 

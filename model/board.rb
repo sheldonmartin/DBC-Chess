@@ -1,3 +1,5 @@
+require_relative "pawn"
+
 class Board
 
   USER_ACTUAL = {
@@ -75,10 +77,11 @@ class Board
 
   }
 
+  attr_reader :board
+
   def initialize
-    @board = Array.new(8){Array.new(8){"- "}}
-
-
+    @board = Array.new(8){Array.new(8){"  "}}
+    initialize_board
   end
 
   # input: original coordinate of the piece being moved.
@@ -87,13 +90,17 @@ class Board
   def move(original, new_coordinates)
   end
 
-
   def to_s
     @board.join("").scan(/.{16}/).join("\n")
+    # board.each
+  end
+
+  private
+
+  def initialize_board
+    board[1][0] = Pawn.new("white")
   end
 end
 
-# new = Board.new
-
-
-# puts new.to_s
+board = Board.new
+puts board

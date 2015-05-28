@@ -1,4 +1,5 @@
-require_relative "../model/board"
+require_relative "model/board"
+require_relative "model/pawn"
 
 describe Board do
   it "should initialize a board object" do

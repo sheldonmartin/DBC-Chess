@@ -1,0 +1,8 @@
+#view: "what piece would you like to move?
+#input: pawn at a2
+#goes to method in pawn class, inherits from piece class which gives all possible moves in an array
+#this array gets displayed to the user
+#the user chooses a move
+#this input (a2 to a3) from the user is called by the move method in board class
+
+#CONSTANT HASH - keys are board cells that have values of coordinates

@@ -108,12 +108,12 @@ class Board
   end
 end
 
-board = Board.new
-p board.board
-puts "-" * 16
-puts board
-puts "-" * 16
-board.move("a7","a6")
-puts board
-puts "-" * 16
-p board.board
+# board = Board.new
+# p board.board
+# puts "-" * 16
+# puts board
+# puts "-" * 16
+# board.move("a7","a6")
+# puts board
+# puts "-" * 16
+# p board.board

@@ -1,4 +1,5 @@
-require_relative 'Board'
+require_relative 'model/board'
+require_relative 'view'
 
 class GameController
 
@@ -13,7 +14,7 @@ class GameController
 
   def run
     View.color
-    color = View.inputs
+    color = View.input
     View.display_board(board)
     View.first_move
     View.choose_piece #WP
@@ -23,8 +24,12 @@ class GameController
     View.where_to(piece)
     new_location = View.input
     board.move(current_location,new_location)
+    View.display_board(board)
     View.piece_move(piece,current_location,new_location)
 
   end
 
 end
+
+game = GameController.new
+

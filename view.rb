@@ -31,12 +31,12 @@ module View
     puts "Where do you want to move your #{piece} to?"
   end
 
-  end
+
   def self.piece_move(piece, current, updated)
     puts "You moved #{piece} from #{current} to #{updated}."
   end
 
 
 
-  end
+
 end

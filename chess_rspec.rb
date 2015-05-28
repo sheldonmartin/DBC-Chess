@@ -15,7 +15,7 @@ describe Board do
   it "should move a pawn: original cell should empty" do
     chess_board = Board.new
     chess_board.move("a7", "a6")
-    expect(chess_board.board[1][0]).to eq("- ")
+    expect(chess_board.board[1][0]).to eq("  ")
   end
 
   it "should move a pawn: new spot should contain a pawn" do

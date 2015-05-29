@@ -26,7 +26,7 @@ class Pawn < Piece
   end
 end
 
-pawn = Pawn.new("B")
-p pawn.get_possible_coordinates([1,0])
-p pawn.can?([1,0],[2,0])
-puts pawn
+# pawn = Pawn.new("B")
+# p pawn.get_possible_coordinates([1,0])
+# p pawn.can?([1,0],[2,0])
+# puts pawn

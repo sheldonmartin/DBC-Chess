@@ -34,6 +34,6 @@ def can?(current,new_location) # [1,0]
 
 end
 
-king = King.new("W")
-p king.get_possible_coordinates([0,0])
-p king.can?([3,3],[5,7])
+# king = King.new("W")
+# p king.get_possible_coordinates([0,0])
+# p king.can?([3,3],[5,7])

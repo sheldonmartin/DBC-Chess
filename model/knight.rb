@@ -9,7 +9,7 @@ class Knight < Piece
 
   end
 
-  def get_possible_coordinates(current) #1d array that will be passed from board
+  def get_possible_coordinates(current)
 
   possible_ary = []
 

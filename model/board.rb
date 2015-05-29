@@ -18,10 +18,10 @@ class Board
   # output: N/A
   # result: moves piece to new_location
   def move(original_location, new_location)
-    oy = original[0]
-    ox = original[1]
-    dy = new_coordinates[0]
-    dx = new_coordinates[1]
+    oy = original_location[0]
+    ox = original_location[1]
+    dy = new_location[0]
+    dx = new_location[1]
 
     board[dy][dx] = board[oy][ox]
     board[oy][ox] = "  "

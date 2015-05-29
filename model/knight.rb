@@ -9,7 +9,7 @@ class Knight < Piece
 
   end
 
-  def get_possible_coordinates(current) #1d array that will be passed from board
+  def get_possible_coordinates(current)
 
   possible_ary = []
 
@@ -32,9 +32,4 @@ class Knight < Piece
 
   end
 end
-
-knight = Knight.new("W")
-p knight.get_possible_coordinates([0,1])
-p knight.can?([0,1],[3,2])
-p knight.can?([0,1],[7,6])
 

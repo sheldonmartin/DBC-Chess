@@ -1,11 +1,12 @@
 require_relative "pawn"
+require_relative "piece"
 require "pry"
 
 class Board
 
   USER_ACTUAL = {
     "a8"=>  [0,0],
-    "a7"=>  [1,0],
+    "a7"=>  [1,0],#y, x
     "a6"=>  [2,0],
     "a5"=>  [3,0],
     "a4"=>  [4,0],

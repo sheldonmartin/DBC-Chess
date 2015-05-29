@@ -3,30 +3,30 @@ require_relative "piece"
 class Pawn < Piece
   TYPE = "P"
 
-  private
+  # private
 
-  def can?(current, new_location) # [1,0]
-    y = new_location[0] # 1
-    x = new_location[1] # 0
+  def can?(current,new_location) # [1,0]
+    # y = new_location[0] # 1
+    # x = new_location[1] # 0
 
-    possible_coordinates = get_possible_coordinates(current)
-    possible_coordinates.each do |possible_coordinate|
-      return true if possible_coordinate[0] == y && possible_coordinate[1] == x
-    end
+     possible_coordinates = get_possible_coordinates(current)
+    # possible_coordinates.each do |possible_coordinate|
+    #   return true if possible_coordinate[0] == y && possible_coordinate[1] == x
+    # end
 
-    return false
-
+    # return false
+    possible_coordinates.include?(new_location)
 
   end
 
-  def get_possible_coordinates(current)
-    return [[1,0],[5,3]] #move forward/backward from current
+  def get_possible_coordinates(current) #1d array that will be passed from board
+  forwardy = current[0]+1
+  backwardy = current[0]-1
+  possible_ary = [[forwardy,current[1]],[backwardy,current[1]]]
   end
 end
 
 pawn = Pawn.new("B")
-p pawn.possible_moves([0,0],[[1,0],[2,0],[5,3]])
+p pawn.get_possible_coordinates([1,0])
+p pawn.can?([1,0],[2,0])
 puts pawn
-# pawn2 = Pawn.new("black")
-# puts pawn
-# puts pawn2

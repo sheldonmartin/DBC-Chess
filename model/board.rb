@@ -16,15 +16,26 @@ class Board
 
   # input: original coordinate of the piece being moved.
   # output: N/A
-  # result: moves piece to new_coordinates
-  def move(original, new_coordinates)
-    oy = USER_ACTUAL[original][0]
-    ox = USER_ACTUAL[original][1]
-    dy = USER_ACTUAL[new_coordinates][0]
-    dx = USER_ACTUAL[new_coordinates][1]
+  # result: moves piece to new_location
+  def move(original_location, new_location)
+    oy = original[0]
+    ox = original[1]
+    dy = new_coordinates[0]
+    dx = new_coordinates[1]
 
     board[dy][dx] = board[oy][ox]
     board[oy][ox] = "  "
+  end
+
+  def find_piece(piece_location)
+    y = piece_location[0] 
+    x = piece_location[1]
+
+    board[x][y]
+  end
+
+  def possible_moves(piece_location, coordinates)
+    find_piece(piece_location).possible_moves(piece_location, coordinates)
   end
 
   def to_s

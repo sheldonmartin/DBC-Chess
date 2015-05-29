@@ -8,25 +8,29 @@ class GameController
 
   def initialize
     @board = Board.new
-    View.welcome
+    View.display_game_start
     run
   end
 
   def run
-    View.color
     color = View.input
-    View.display_board(board)
-    View.first_move
-    View.choose_piece #WP
-    piece = View.input
-    View.choose
-    current_location = View.input #a7
-    View.where_to(piece)
-    new_location = View.input
-    board.move(current_location,new_location)
-    View.display_board(board)
-    View.piece_move(piece,current_location,new_location)
+    if color == "white"
+      View.first_move?
+      piece = View.input
+      View.where_from?(piece)
+      current_location = View.input
+      View.where_to?(piece)
+      new_location = View.input
+      board.move(current_location,new_location)
+      View.display_board(board)
+      View.piece_move(piece,current_location,new_location)
+      #if captured
+      View.capture
+      #if move invalid
+      View.invalid
 
+    #black player's turn LOOP
+    View.black_turn
   end
 
 end

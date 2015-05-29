@@ -35,6 +35,4 @@ class Bishop < Piece
 
 end
 
-# bishop = Bishop.new("W")
-# p bishop.get_possible_coordinates([3,3])
-# p bishop.can?([3,3],[4,4])
+

@@ -21,3 +21,4 @@ class Piece
     raise NotImplementedError, 'can? method must be implemented in sub classes of Piece'
   end
 end
+

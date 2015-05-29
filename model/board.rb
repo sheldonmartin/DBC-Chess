@@ -1,77 +1,12 @@
-require_relative "pawn"
 require_relative "piece"
-require "pry"
+require_relative "pawn"
+require_relative "rook"
+require_relative "knight"
+require_relative "bishop"
+require_relative "king"
+require_relative "queen"
 
 class Board
-
-  USER_ACTUAL = {
-    "a8"=>  [0,0],
-    "a7"=>  [1,0],#y, x
-    "a6"=>  [2,0],
-    "a5"=>  [3,0],
-    "a4"=>  [4,0],
-    "a3"=>  [5,0],
-    "a2"=>  [6,0],
-    "a1"=>  [7,0],
-    "b8"=>  [0,1],
-    "b7"=>  [1,1],
-    "b6"=>  [2,1],
-    "b5"=>  [3,1],
-    "b4"=>  [4,1],
-    "b3"=>  [5,1],
-    "b2"=>  [6,1],
-    "b1"=>  [7,1],
-    "c8"=>  [0,2],
-    "c7"=>  [1,2],
-    "c6"=>  [2,2],
-    "c5"=>  [3,2],
-    "c4"=>  [4,2],
-    "c3"=>  [5,2],
-    "c2"=>  [6,2],
-    "c1"=>  [7,2],
-    "d8"=>  [0,3],
-    "d7"=>  [1,3],
-    "d6"=>  [2,3],
-    "d5"=>  [3,3],
-    "d4"=>  [4,3],
-    "d3"=>  [5,3],
-    "d2"=>  [6,3],
-    "d1"=>  [7,3],
-    "e8"=>  [0,4],
-    "e7"=>  [1,4],
-    "e6"=>  [2,4],
-    "e5"=>  [3,4],
-    "e4"=>  [4,4],
-    "e3"=>  [5,4],
-    "e2"=>  [6,4],
-    "e1"=>  [7,4],
-    "f8"=>  [0,5],
-    "f7"=>  [1,5],
-    "f6"=>  [2,5],
-    "f5"=>  [3,5],
-    "f4"=>  [4,5],
-    "f3"=>  [5,5],
-    "f2"=>  [6,5],
-    "f1"=>  [7,5],
-    "g8"=>  [0,6],
-    "g7"=>  [1,6],
-    "g6"=>  [2,6],
-    "g5"=>  [3,6],
-    "g4"=>  [4,6],
-    "g3"=>  [5,6],
-    "g2"=>  [6,6],
-    "g1"=>  [7,6],
-    "h8"=>  [0,7],
-    "h7"=>  [1,7],
-    "h6"=>  [2,7],
-    "h5"=>  [3,7],
-    "h4"=>  [4,7],
-    "h3"=>  [5,7],
-    "h2"=>  [6,7],
-    "h1"=>  [7,7]
-
-  }
-
   attr_reader :board
 
   def initialize
@@ -93,28 +28,49 @@ class Board
   end
 
   def to_s
+    # @board.join("").scan(/.{16}/).join("\n")
+    # board.map do |row|
+    #   row.map do |position|
+    #     "#{position}"
+    #   end.join("|")
+    # end.join("\n")
 
-    @board.join("").scan(/.{16}/).join("\n")
-    # board.each
+    board_string = ""
+    y_axis_label = 8
+
+    board.map.with_index do |row, index|
+      board_string << "#{y_axis_label}"
+      board_string << row.map do |position|
+        "#{position}"
+      end.join("|") + "\n"
+      y_axis_label -= 1
+    end.join("\n")
+
+    board_string << " a  b  c  d  e  f  g  h\n" # x-axis label
   end
 
   private
 
   def initialize_board
-    location = USER_ACTUAL["a7"] #[1,0]
-    # binding.pry
-    board[location[0]][location[1]] = Pawn.new("white")
+    8.times do |i|
+      board[1][i] = Pawn.new("B")
+      board[6][i] = Pawn.new("W")
+    end
 
-    # board[1][0] = Pawn.new("white")
+    rows_and_colors = [[0,"B"],[7,"W"]] # contains pairs of starting rows and it's color
+
+    rows_and_colors.each do |row_and_color|
+      row = row_and_color[0]
+      color = row_and_color[1]
+
+      board[row][0] = Rook.new(color)
+      board[row][7] = Rook.new(color)
+      board[row][1] = Knight.new(color)
+      board[row][6] = Knight.new(color)
+      board[row][2] = Bishop.new(color)
+      board[row][5] = Bishop.new(color)
+      board[row][3] = Queen.new(color)
+      board[row][4] = King.new(color)
+    end
   end
 end
-
-# board = Board.new
-# p board.board
-# puts "-" * 16
-# puts board
-# puts "-" * 16
-# board.move("a7","a6")
-# puts board
-# puts "-" * 16
-# p board.board

@@ -1,6 +1,6 @@
 module View
 
-  def self.display_game_start
+  def self.display_game_start(board)
     welcome
     color
     display_board(board)
@@ -22,8 +22,8 @@ module View
     puts "What color do you want to be? (black or white)"
   end
 
-  def first_move?
-    puts "White goes first, what piece do you want to move?"
+  def self.first_move?
+    puts "What piece do you want to move?"
   end
 
   def self.where_from?(piece)
@@ -32,6 +32,10 @@ module View
 
   def self.where_to?(piece)
     puts "Where do you want to move your #{piece} to?"
+  end
+
+  def self.possible?
+    puts "These are your possible moves:"
   end
 
   def self.piece_move(piece, current, updated)

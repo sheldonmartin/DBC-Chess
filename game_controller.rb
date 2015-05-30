@@ -4,6 +4,7 @@ require_relative 'model/map'
 require 'pry'
 
 class GameController
+  PLAYERS = ["White","Black"]
   include MAP
   #include View
   attr_reader :board
@@ -11,6 +12,10 @@ class GameController
   def initialize
     @board = Board.new
     View.display_game_start(board)
+    v = @board.find_piece([0,0])
+    c = @board.find_piece([0,2])
+    #binding.pry
+    p @board.spots_taken
     run
   end
 
@@ -19,32 +24,22 @@ class GameController
   end
 
   def run
-    color = View.input
-    #if color == "white"
       until gameover?
-          View.first_move?
+          PLAYERS.each do |player|
+            View.player_turn(player)
+              View.first_move?
           piece = View.input
           View.where_from?(piece)
           current_location = MAP[View.input]
           View.possible?
-          #board.get_possible_coordinates(MAP[current_location])
+          board.possible_moves(MAP[current_location])
           View.where_to?(piece)
           new_location = MAP[View.input]
           board.move(current_location,new_location)
           View.display_board(board)
           View.piece_move(piece,MAP.key(current_location),MAP.key(new_location))
-          #if captured
-          #View.capture
-          #if move invalid
-          #View.invalid
-
-        #black player's turn LOOP
-        #View.black_turn
-
+          end
       end
   end
 
 end
-
-game = GameController.new
-

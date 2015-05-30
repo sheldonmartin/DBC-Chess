@@ -3,13 +3,6 @@ require_relative "piece"
 class Bishop < Piece
   TYPE = "B"
 
-   def can?(current,new_location)
-
-    possible_coordinates = get_possible_coordinates(current)
-    possible_coordinates.include?(new_location)
-
-  end
-
   def get_possible_coordinates(current)
 
     possible_ary = []

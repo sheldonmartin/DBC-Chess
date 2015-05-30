@@ -12,34 +12,41 @@ class GameController
   def initialize
     @board = Board.new
     View.display_game_start(board)
-    v = @board.find_piece([0,0])
-    c = @board.find_piece([0,2])
     #binding.pry
-    p @board.spots_taken
     run
   end
 
-  def gameover?
-    false
-  end
-
   def run
-      until gameover?
+      until board.checkmate?
           PLAYERS.each do |player|
             View.player_turn(player)
-              View.first_move?
-          piece = View.input
-          View.where_from?(piece)
-          current_location = MAP[View.input]
-          View.possible?
-          board.possible_moves(MAP[current_location])
-          View.where_to?(piece)
-          new_location = MAP[View.input]
-          board.move(current_location,new_location)
-          View.display_board(board)
-          View.piece_move(piece,MAP.key(current_location),MAP.key(new_location))
+            View.first_move?
+            piece = View.input
+            View.where_from?(piece)
+            current_location = View.input
+            View.possible?
+           # binding.pry
+            moves = p board.back_to_user(board.allowed_moves(MAP[current_location]))
+            View.where_to?(piece)
+            new_location = View.input
+            loop do
+              if moves.include?(new_location)
+                board.move(MAP[current_location],MAP[new_location])
+                View.display_board(board)
+                View.piece_move(piece,current_location,new_location)
+                break
+              else
+                View.invalid
+                View.where_to?(piece)
+                View.possible?
+                moves = p board.back_to_user(board.allowed_moves(MAP[current_location]))
+                new_location = View.input
+              end
+            end
           end
       end
   end
 
 end
+
+#game = GameController.new

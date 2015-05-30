@@ -3,7 +3,7 @@ require_relative "piece"
 class Pawn < Piece
   TYPE = "P"
 
-  private
+  #private
 
   def can?(current,new_location)
     possible_coordinates = get_possible_coordinates(current)

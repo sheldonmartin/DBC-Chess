@@ -41,6 +41,14 @@ class Board
     find_piece(piece_location).get_possible_coordinates(piece_location)
   end
 
+  def allowed_moves(piece_location)
+    possible_moves(piece_location) -  (possible_moves(piece_location)&spots_taken)
+  end
+
+  def back_to_user(allowed_array)
+    allowed_array.map{ |coordinate| MAP.key(coordinate)}
+  end
+
   def spots_taken
     ary = []
       MAP.each do |key,value|
@@ -49,6 +57,10 @@ class Board
         end
       end
     ary
+  end
+
+  def valid_move(input,piece_location) #want this to evaluate to true for use in controller
+    input.include?(allowed_moves(piece_location))
   end
 
   def to_s

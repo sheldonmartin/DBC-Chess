@@ -17,9 +17,6 @@ class Board
     initialize_board
   end
 
-  # input: original coordinate of the piece being moved.
-  # output: N/A
-  # result: moves piece to new_location
   def move(original_location, new_location)
     oy = original_location[0]
     ox = original_location[1]
@@ -41,6 +38,10 @@ class Board
     find_piece(piece_location).get_possible_coordinates(piece_location)
   end
 
+  def allowed_moves(piece_location)
+    possible_moves(piece_location) -  (possible_moves(piece_location)&spots_taken)
+  end
+
   def spots_taken
     ary = []
       MAP.each do |key,value|
@@ -49,6 +50,10 @@ class Board
         end
       end
     ary
+  end
+
+  def valid_move(input,piece_location) #want this to evaluate to true for use in controller
+    input.include?(allowed_moves(piece_location))
   end
 
   def to_s

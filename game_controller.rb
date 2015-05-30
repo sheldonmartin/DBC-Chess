@@ -1,6 +1,7 @@
 require_relative 'model/board'
 require_relative 'view'
 require_relative 'model/map'
+
 require 'pry'
 
 class GameController
@@ -12,10 +13,6 @@ class GameController
   def initialize
     @board = Board.new
     View.display_game_start(board)
-    v = @board.find_piece([0,0])
-    c = @board.find_piece([0,2])
-    #binding.pry
-    p @board.spots_taken
     run
   end
 
@@ -27,19 +24,22 @@ class GameController
       until gameover?
           PLAYERS.each do |player|
             View.player_turn(player)
-              View.first_move?
-          piece = View.input
-          View.where_from?(piece)
-          current_location = MAP[View.input]
-          View.possible?
-          board.possible_moves(MAP[current_location])
-          View.where_to?(piece)
-          new_location = MAP[View.input]
-          board.move(current_location,new_location)
-          View.display_board(board)
-          View.piece_move(piece,MAP.key(current_location),MAP.key(new_location))
+            View.first_move?
+            piece = View.input
+            View.where_from?(piece)
+            current_location = MAP[View.input]
+            View.possible?
+            #binding.pry
+            board.allowed_moves(MAP[current_location])
+            View.where_to?(piece)
+            new_location = MAP[View.input]
+            board.move(current_location,new_location)
+            View.display_board(board)
+            View.piece_move(piece,MAP.key(current_location),MAP.key(new_location))
           end
       end
   end
 
 end
+ 
+p game = GameController.new

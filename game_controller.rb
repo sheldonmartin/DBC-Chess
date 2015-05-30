@@ -24,7 +24,17 @@ class GameController
             piece = View.input
             View.where_from?(piece)
             current_location = View.input
-            View.possible?
+            loop do
+              if MAP.include?(current_location)
+                View.possible?
+                current_location
+                break
+              else
+                View.on_board
+                View.where_from?(piece)
+                current_location = View.input
+              end
+            end
            # binding.pry
             moves = p board.back_to_user(board.allowed_moves(MAP[current_location]))
             View.where_to?(piece)
@@ -49,4 +59,4 @@ class GameController
 
 end
 
-#game = GameController.new
+game = GameController.new

@@ -54,5 +54,9 @@ module View
     puts "#{player} player's turn."
   end
 
+  def self.on_board
+    puts "Please select a piece on the board."
+  end
+
 
 end

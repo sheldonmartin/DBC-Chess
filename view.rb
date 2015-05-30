@@ -47,7 +47,7 @@ module View
   end
 
   def self.invalid
-    puts "That is an invalid move."
+    puts "That is an invalid move, BRO."
   end
 
   def self.player_turn(player)

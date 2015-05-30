@@ -17,6 +17,9 @@ class Board
     initialize_board
   end
 
+  def checkmate? #work in progress for the logic of this
+    false
+  end
   # input: original coordinate of the piece being moved.
   # output: N/A
   # result: moves piece to new_location
@@ -41,6 +44,14 @@ class Board
     find_piece(piece_location).get_possible_coordinates(piece_location)
   end
 
+  def allowed_moves(piece_location)
+    possible_moves(piece_location) -  (possible_moves(piece_location)&spots_taken)
+  end
+
+  def back_to_user(allowed_array)
+    allowed_array.map{ |coordinate| MAP.key(coordinate)}
+  end
+
   def spots_taken
     ary = []
       MAP.each do |key,value|
@@ -49,6 +60,10 @@ class Board
         end
       end
     ary
+  end
+
+  def valid_move(new_location,allowed_array) #want this to evaluate to true for use in controller
+    allowed_array.include?(new_location)
   end
 
   def to_s

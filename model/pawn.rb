@@ -5,11 +5,6 @@ class Pawn < Piece
 
   #private
 
-  def can?(current,new_location)
-    possible_coordinates = get_possible_coordinates(current)
-    possible_coordinates.include?(new_location)
-  end
-
   def get_possible_coordinates(current)
     possible_ary = [[current[0]+1,current[1]],[current[0]-1,current[1]]]
     possible_pawn = possible_ary.select do |coordinate|

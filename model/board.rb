@@ -5,9 +5,12 @@ require_relative "knight"
 require_relative "bishop"
 require_relative "king"
 require_relative "queen"
+require_relative "map"
 
 class Board
   attr_reader :board
+
+  include MAP
 
   def initialize
     @board = Array.new(8){Array.new(8){"  "}}
@@ -28,24 +31,27 @@ class Board
   end
 
   def find_piece(piece_location)
-    y = piece_location[0] 
+    y = piece_location[0]
     x = piece_location[1]
 
-    board[x][y]
+    board[y][x]
   end
 
-  def possible_moves(piece_location, coordinates)
-    find_piece(piece_location).possible_moves(piece_location, coordinates)
+  def possible_moves(piece_location)
+    find_piece(piece_location).get_possible_coordinates(piece_location)
+  end
+
+  def spots_taken
+    ary = []
+      MAP.each do |key,value|
+        if find_piece(value) != "  "
+          ary << value
+        end
+      end
+    ary
   end
 
   def to_s
-    # @board.join("").scan(/.{16}/).join("\n")
-    # board.map do |row|
-    #   row.map do |position|
-    #     "#{position}"
-    #   end.join("|")
-    # end.join("\n")
-
     board_string = ""
     y_axis_label = 8
 

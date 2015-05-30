@@ -59,8 +59,8 @@ class Board
     ary
   end
 
-  def valid_move(input,piece_location) #want this to evaluate to true for use in controller
-    input.include?(allowed_moves(piece_location))
+  def valid_move(new_location,allowed_array) #want this to evaluate to true for use in controller
+    allowed_array.include?(new_location)
   end
 
   def to_s

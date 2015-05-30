@@ -20,6 +20,10 @@ class GameController
     false
   end
 
+  def resolved?
+    false
+  end
+
   def run
       until gameover?
           PLAYERS.each do |player|
@@ -32,11 +36,21 @@ class GameController
            # binding.pry
             moves = p board.back_to_user(board.allowed_moves(MAP[current_location]))
             View.where_to?(piece)
-            new_location = MAP[View.input]
-            #valid or invalid move detection
-            board.move(current_location,new_location)
-            View.display_board(board)
-            View.piece_move(piece,MAP.key(current_location),MAP.key(new_location))
+            new_location = View.input
+            loop do
+              if moves.include?(new_location)
+                board.move(MAP[current_location],MAP[new_location])
+                View.display_board(board)
+                View.piece_move(piece,current_location,new_location)
+                break
+              else
+                View.invalid
+                View.where_to?(piece)
+                View.possible?
+                moves = p board.back_to_user(board.allowed_moves(MAP[current_location]))
+                new_location = View.input
+              end
+            end
           end
       end
   end

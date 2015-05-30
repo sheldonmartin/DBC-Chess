@@ -17,6 +17,9 @@ class Board
     initialize_board
   end
 
+  def checkmate? #work in progress for the logic of this
+    false
+  end
   # input: original coordinate of the piece being moved.
   # output: N/A
   # result: moves piece to new_location

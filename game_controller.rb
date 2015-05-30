@@ -16,16 +16,8 @@ class GameController
     run
   end
 
-  def gameover?
-    false
-  end
-
-  def resolved?
-    false
-  end
-
   def run
-      until gameover?
+      until board.checkmate?
           PLAYERS.each do |player|
             View.player_turn(player)
             View.first_move?

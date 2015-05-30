@@ -59,4 +59,4 @@ class GameController
 
 end
 
-game = GameController.new
+#game = GameController.new

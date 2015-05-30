@@ -6,3 +6,12 @@
 #this input (a2 to a3) from the user is called by the move method in board class
 
 #CONSTANT HASH - keys are board cells that have values of coordinates
+
+
+#user choses a piece at a certain location (a7)
+#you get the input and it's passed to the board which calls on the get_possible_coordinates
+#method in the specicfic piece file.
+#we get the possible coordinates from the specific piece file
+#the possible coordinates are passed through the board to the controller and displayed to the user
+#the user picks one from the array and it moves there, if
+#he picks one not in the array, a invalid message shows up.

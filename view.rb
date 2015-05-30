@@ -50,12 +50,9 @@ module View
     puts "That is an invalid move."
   end
 
-  def self.white_turn
-    puts "White player's turn."
+  def self.player_turn(player)
+    puts "#{player} player's turn."
   end
 
-  def self.black_turn
-    puts "Black player's turn."
-  end
 
 end

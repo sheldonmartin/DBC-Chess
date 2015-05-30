@@ -11,14 +11,7 @@ class Piece
     return "#{color}#{self.class::TYPE}"
   end
 
-  def possible_moves(current_location, coordinates)
-    coordinates.select {|coordinate| can?(current_location, coordinate) }
-  end
-
-  private
-
-  def can?(current_location, coordinate)
-    raise NotImplementedError, 'can? method must be implemented in sub classes of Piece'
+  def get_possible_coordinates(current_location)
+    raise NotImplementedError, 'get_possible_coordinates method must be implemented in sub classes of Piece'
   end
 end
-

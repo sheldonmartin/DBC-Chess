@@ -1,4 +1,5 @@
 require_relative "piece"
+
 class Queen < Piece
   TYPE = "Q"
 
@@ -39,6 +40,3 @@ class Queen < Piece
     rook_possible + bishop_possible
   end
 end
-
-
-

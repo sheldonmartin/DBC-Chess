@@ -1,9 +1,9 @@
 require_relative "piece"
+
 class Knight < Piece
   TYPE = "N"
 
   def get_possible_coordinates(current)
-
   possible_ary = []
 
   possible_ary << [current[0]+3,current[1]+1]
@@ -25,4 +25,3 @@ class Knight < Piece
 
   end
 end
-

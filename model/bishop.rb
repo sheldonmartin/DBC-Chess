@@ -4,7 +4,6 @@ class Bishop < Piece
   TYPE = "B"
 
   def get_possible_coordinates(current)
-
     possible_ary = []
 
     count=1
@@ -25,7 +24,4 @@ class Bishop < Piece
       end
     end
   end
-
 end
-
-

@@ -1,9 +1,9 @@
 require_relative "piece"
+
 class King < Piece
     TYPE = "K"
 
   def get_possible_coordinates(current)
-
     possible_ary = []
 
     possible_ary << [current[0]-1,current[1]-1]
@@ -22,8 +22,5 @@ class King < Piece
         true
       end
     end
-
   end
-
 end
-

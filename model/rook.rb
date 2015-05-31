@@ -1,4 +1,5 @@
 require_relative "piece"
+
 class Rook < Piece
   TYPE = "R"
 
@@ -18,6 +19,4 @@ class Rook < Piece
 
     possible_ary.select {|coordinate| coordinate != current}
   end
-
 end
-

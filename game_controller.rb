@@ -1,4 +1,3 @@
-require_relative 'model/board'
 require_relative 'view'
 require_relative 'model/map'
 require 'pry'
@@ -9,8 +8,8 @@ class GameController
   #include View
   attr_reader :board
 
-  def initialize
-    @board = Board.new
+  def initialize(board)
+    @board = board
     View.display_game_start(board)
     #binding.pry
     run
@@ -48,5 +47,3 @@ class GameController
   end
 
 end
-
-#game = GameController.new

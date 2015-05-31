@@ -3,8 +3,6 @@ require_relative "piece"
 class Pawn < Piece
   TYPE = "P"
 
-  #private
-
   def get_possible_coordinates(current)
     possible_ary = [[current[0]+1,current[1]],[current[0]-1,current[1]]]
     possible_pawn = possible_ary.select do |coordinate|
@@ -17,4 +15,3 @@ class Pawn < Piece
     possible_pawn
   end
 end
-

@@ -25,7 +25,7 @@ class GameController
             current_location = View.input
             View.possible?
            # binding.pry
-            moves = p board.back_to_user(board.allowed_moves(MAP[current_location]))
+            moves = p board.back_to_user(board.possible_moves(MAP[current_location]))
             View.where_to?(piece)
             new_location = View.input
             loop do
@@ -38,7 +38,7 @@ class GameController
                 View.invalid
                 View.where_to?(piece)
                 View.possible?
-                moves = p board.back_to_user(board.allowed_moves(MAP[current_location]))
+                moves = p board.back_to_user(board.possible_moves(MAP[current_location]))
                 new_location = View.input
               end
             end

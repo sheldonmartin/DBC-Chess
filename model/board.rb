@@ -1,10 +1,3 @@
-require_relative "piece"
-require_relative "pawn"
-require_relative "rook"
-require_relative "knight"
-require_relative "bishop"
-require_relative "king"
-require_relative "queen"
 require_relative "map"
 
 class Board
@@ -12,9 +5,8 @@ class Board
 
   include MAP
 
-  def initialize
-    @board = Array.new(8){Array.new(8){"  "}}
-    initialize_board
+  def initialize(board = nil)
+    @board = board || Array.new(8){Array.new(8){"  "}}
   end
 
   def checkmate? #work in progress for the logic of this
@@ -79,30 +71,5 @@ class Board
     end.join("\n")
 
     board_string << " a  b  c  d  e  f  g  h\n" # x-axis label
-  end
-
-  private
-
-  def initialize_board
-    8.times do |i|
-      board[1][i] = Pawn.new("B")
-      board[6][i] = Pawn.new("W")
-    end
-
-    rows_and_colors = [[0,"B"],[7,"W"]] # contains pairs of starting rows and it's color
-
-    rows_and_colors.each do |row_and_color|
-      row = row_and_color[0]
-      color = row_and_color[1]
-
-      board[row][0] = Rook.new(color)
-      board[row][7] = Rook.new(color)
-      board[row][1] = Knight.new(color)
-      board[row][6] = Knight.new(color)
-      board[row][2] = Bishop.new(color)
-      board[row][5] = Bishop.new(color)
-      board[row][3] = Queen.new(color)
-      board[row][4] = King.new(color)
-    end
   end
 end

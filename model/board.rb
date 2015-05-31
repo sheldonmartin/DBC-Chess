@@ -6,6 +6,7 @@ require_relative "bishop"
 require_relative "king"
 require_relative "queen"
 require_relative "map"
+require "pry"
 
 class Board
   attr_reader :board
@@ -40,27 +41,101 @@ class Board
     board[y][x]
   end
 
-  def possible_moves(piece_location)
-    find_piece(piece_location).get_possible_coordinates(piece_location)
+  def check_east(piece_location)
+    y = piece_location[0] # x-axis
+    x = piece_location[1] # y-axis
+    legal_moves = []
+    move = 1
+
+    # check east
+    while (x + move) <= 7 do
+      if board[y][x + move] == "  "
+        legal_moves << [y, x + move]
+      elsif board[y][x + move].color == find_piece(piece_location).color
+        break
+      else
+        legal_moves << [y, x + move]
+        break
+      end
+      move += 1
+    end
+
+    return legal_moves
   end
 
-  def allowed_moves(piece_location)
-    possible_moves(piece_location) -  (possible_moves(piece_location)&spots_taken)
+  def check_west(piece_location)
+    y = piece_location[0] # x-axis
+    x = piece_location[1] # y-axis
+    legal_moves = []
+    move = 1
+
+    # check west
+    while (x - move) >= 0 do
+      test = board[y][x - move]
+      if board[y][x + move] == "  "
+        legal_moves << [y, x - move]
+      elsif board[y][x + move].color == find_piece(piece_location).color
+        break
+      else
+        legal_moves << [y, x - move]
+        break
+      end
+      move += 1
+    end
+
+    return legal_moves
   end
+
+  def possible_moves(piece_location)
+    y = piece_location[0] # x-axis
+    x = piece_location[1] # y-axis
+
+    moves_from_piece = find_piece(piece_location).get_possible_coordinates(piece_location)
+    legal_moves = []
+    move = 1
+
+    legal_moves += check_east(piece_location) + check_west(piece_location)
+
+    # check_east
+
+    # # check east
+    # while (x + move) <= 7 do
+    #   if board[y][x + move] == "  "
+    #     legal_moves << [y, x + move]
+    #   elsif board[y][x + move].color == find_piece(piece_location).color
+    #     break
+    #   else
+    #     legal_moves << [y, x + move]
+    #     break
+    #   end
+    #   move += 1
+    # end
+
+    # move = 1
+
+
+    binding.pry
+
+    return legal_moves.select { |move| moves_from_piece.include?(move) }
+  end
+
+  # def allowed_moves(piece_location)
+  #   possible_moves(piece_location) -  (possible_moves(piece_location)&spots_taken)
+  # end
 
   def back_to_user(allowed_array)
     allowed_array.map{ |coordinate| MAP.key(coordinate)}
   end
 
-  def spots_taken
-    ary = []
-      MAP.each do |key,value|
-        if find_piece(value) != "  "
-          ary << value
-        end
-      end
-    ary
-  end
+  # def spots_taken
+  #   ary = []
+  #     MAP.each do |key,value|
+  #       if find_piece(value) != "  "
+  #         ary << value
+  #       end
+  #     end
+  #   ary
+  # end
 
   def valid_move(new_location,allowed_array) #want this to evaluate to true for use in controller
     allowed_array.include?(new_location)

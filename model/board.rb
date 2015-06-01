@@ -9,7 +9,7 @@ class Board
     @board = board || Array.new(8){Array.new(8){"  "}}
   end
 
-  def checkmate? #work in progress for the logic of this
+  def game_over? #work in progress for the logic of this
     false
   end
   # input: original coordinate of the piece being moved.
@@ -33,7 +33,19 @@ class Board
   end
 
   def possible_moves(piece_location)
-    find_piece(piece_location).get_possible_coordinates(piece_location)
+    find_piece(piece_location).get_possible_coordinates(piece_location) - friendly_piece_locations(piece_location)
+  end
+
+  def friendly_piece_locations(piece_location)
+    ary = []
+      MAP.each do |key,value|
+        if find_piece(value) != '  '
+          if find_piece(value).color == find_piece(piece_location).color
+            ary << value
+          end
+        end
+      end
+    ary
   end
 
   def to_s

@@ -11,7 +11,7 @@ module Checkers
 
       4.times do
         board[row][column] = Checker.new("B")
-        board[row + 5][column - 1] = Checker.new("R")
+        board[row + 5][column - 1] = Checker.new("W")
         column += 2
       end
 

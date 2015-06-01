@@ -3,7 +3,7 @@ require_relative 'model/map'
 require 'pry'
 
 class GameController
-  PLAYERS = ["White","Black"]
+  PLAYERS = ["W","B"]
   include MAP
   #include View
   attr_reader :board
@@ -27,7 +27,7 @@ class GameController
               View.where_from?
               current_location = View.input
               piece = board.find_piece(MAP[current_location])
-              piece != '  ' ? break : View.invalid
+              piece != '  ' && piece.color == player ? break : View.invalid
             end
             View.possible?
            # binding.pry

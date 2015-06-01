@@ -19,10 +19,16 @@ class GameController
       until board.game_over?
           PLAYERS.each do |player|
             View.player_turn(player)
-            View.first_move?
-            piece = View.input
-            View.where_from?(piece)
-            current_location = View.input
+            # View.first_move?
+            # piece = View.input
+            current_location = nil
+            piece = nil
+            loop do
+              View.where_from?
+              current_location = View.input
+              piece = board.find_piece(MAP[current_location])
+              piece != '  ' ? break : View.invalid
+            end
             View.possible?
            # binding.pry
             moves = p back_to_user(board.possible_moves(MAP[current_location]))
@@ -36,7 +42,7 @@ class GameController
                 break
               else
                 View.invalid
-                View.where_to?(piece)
+                View.where_to?
                 View.possible?
                 moves = p back_to_user(board.possible_moves(MAP[current_location]))
                 new_location = View.input

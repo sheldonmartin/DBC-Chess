@@ -48,6 +48,28 @@ class Board
     ary
   end
 
+  # def allowed_moves(piece_location)
+  #   possible_moves(piece_location) -  (possible_moves(piece_location)&spots_taken)
+  # end
+
+  # def back_to_user(allowed_array)
+  #   allowed_array.map{ |coordinate| MAP.key(coordinate)}
+  # end
+
+  # def spots_taken
+  #   ary = []
+  #     MAP.each do |key,value|
+  #       if find_piece(value) != "  "
+  #         ary << value
+  #       end
+  #     end
+  #   ary
+  # end
+
+  # def valid_move(new_location,allowed_array) #want this to evaluate to true for use in controller
+  #   allowed_array.include?(new_location)
+  # end
+
   def to_s
     board_string = ""
     y_axis_label = 8
